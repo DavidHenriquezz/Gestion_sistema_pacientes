@@ -18,11 +18,7 @@ Dado que el sistema está diseñado para ser accesible y fácil de probar, recom
 
 5.- Repl.it clonara el repositorio y te preparará un entorno de ejecución
 
-6.- Cree una pestaña "Shell".
-
-7.- Copie este texto "gcc tdas/*.c main.c -Wno-unused-result -o main"
-
-8.- Para ejecutarlo ingrese "./main"
+6.- Aprete el boton "Run" para que el codigo se ejecute
 
 ## Funcionalidades
 
