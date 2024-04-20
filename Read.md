@@ -14,11 +14,15 @@ Dado que el sistema está diseñado para ser accesible y fácil de probar, recom
 
 3.- Una vez en el inicio selecciona  "New Repl" y elige "Import from GitHub".
 
-4.- Pega este link = https://github.com/DavidHenriquezz/Gestion_sistema_pacientes
+4.- Pega este link = [https://github.com/DavidHenriquezz/Gestion_sistema_pacientes](https://github.com/DavidHenriquezz/Gestion_sistema_pacientes)
 
 5.- Repl.it clonara el repositorio y te preparará un entorno de ejecución
 
-6.- Presiona el boton "Run" para ejecutar.
+6.- Cree una pestaña "Shell".
+
+7.- Copie este texto "gcc tdas/*.c main.c -Wno-unused-result -o main"
+
+8.- Para ejecutarlo ingrese "./main"
 
 ## Funcionalidades
 
