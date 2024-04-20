@@ -36,11 +36,13 @@ void mostrarMenuPrincipal() {
   puts("6) Salir");
 }
 
+//  Funcion para registrar paciente
 void registrar_paciente(List *pacientes) {
   paciente *paciente_actual = (paciente *)malloc(sizeof(paciente));
   if (paciente_actual == NULL)
     exit(EXIT_FAILURE);
 
+  // Ingresar datos del paciente y obtener la hora actual
   struct tm *fecha_hora;
   time_t segundos = time(NULL);
 
@@ -66,11 +68,12 @@ void registrar_paciente(List *pacientes) {
   strcpy(paciente_actual->prioridad, "Baja");
   printf("Se registro a las %s\n", paciente_actual->hora);
   printf("-------------------------------\n");
-  list_pushBack(pacientes, paciente_actual);
+  list_pushBack(pacientes, paciente_actual);//se guarda al final de una lista auxiliar
 }
-
+// Funcion para asignar prioridad a paciente
 void reasignar(paciente *paciente) {
   char opcion, priori;
+  //Se muestra los datos del paciente
   printf("-------------------------------\n");
   printf("Datos del paciente:\n");
   printf("Nombre: %s\n", paciente->nombre);
@@ -79,7 +82,7 @@ void reasignar(paciente *paciente) {
   printf("Desea reasignar la prioridad?(s/n)\n");
   printf("-------------------------------\n");
   scanf(" %c", &opcion);
-
+  //Se muestran los casos según la opción
   switch (opcion) {
   case 's':
     limpiarPantalla();
@@ -91,6 +94,7 @@ void reasignar(paciente *paciente) {
     scanf(" %c", &priori);
     limpiarPantalla();
     switch (priori) {
+      //Se reasigna la prioridad
     case '1':
       strcpy(paciente->prioridad, "Alta");
       break;
@@ -113,6 +117,7 @@ void reasignar(paciente *paciente) {
   }
 }
 
+//Funcion para separar por listas los pacientes según prioridad
 void asignar_prioridad(List *pacientes, List *pacientesMedio,
                        List *pacientesAlta, List *pacientesBaja) {
   paciente *paciente = list_first(pacientes);
@@ -124,43 +129,47 @@ void asignar_prioridad(List *pacientes, List *pacientesMedio,
     while (paciente != NULL) {
       reasignar(paciente);
       if (strcmp(paciente->prioridad, "Alta") == 0) {
-        list_pushBack(pacientesAlta, paciente);
+        list_pushBack(pacientesAlta, paciente);//Se guarda en la lista de alta prioridad
       } else if (strcmp(paciente->prioridad, "Medio") == 0) {
-        list_pushBack(pacientesMedio, paciente);
+        list_pushBack(pacientesMedio, paciente);//Se guarda en la lista de media prioridad
       } else {
-        list_pushBack(pacientesBaja, paciente);
+        list_pushBack(pacientesBaja, paciente);//Se guarda en la lista de baja prioridad
       }
-      paciente = list_next(pacientes);
-      list_popFront(pacientes);
+      paciente = list_next(pacientes);//Pasa al siguiente paciente
+      list_popFront(pacientes);//Elimina el paciente de la lista auxiliar
     }
     printf("-------------------------------\n");
     printf("Prioridades asignadas correctamente\n");
     printf("-------------------------------\n");
   }
 }
+//Funcion para mostrar la lista de espera
 void mostrar_lista_pacientes(List *pacientes, List *pacientesMedio, List *pacientesAlto) {
-  // Mostrar pacientes en la lista de espera
   paciente *datoAlto = list_first(pacientesAlto);
   paciente *datoMedio = list_first(pacientesMedio);
   paciente *datoBaja = list_first(pacientes);
   printf("-------------------------------\n");
+  //Se pregunta si las listas estan vacias
   if (datoAlto == NULL && datoMedio == NULL && datoBaja == NULL) {
     printf("No hay pacientes en la cola de espera\n");
     printf("-------------------------------\n");
   } else {
     while (datoAlto != NULL) {
+      //Se muestran los pacientes de alta prioridad
       printf("Nombre: %s - Prioridad: %s\n", datoAlto->nombre, datoAlto->prioridad);
       printf("Fue ingresado a las %s\n", datoAlto->hora);
       printf("-------------------------------\n");
       datoAlto = list_next(pacientesAlto);
     }
     while (datoMedio != NULL) {
+      //Se muestran los pacientes de medio prioridad
       printf("Nombre: %s - Prioridad: %s\n", datoMedio->nombre, datoMedio->prioridad);
       printf("Fue ingresado a las %s\n", datoMedio->hora);
       printf("-------------------------------\n");
       datoMedio = list_next(pacientesMedio);
     }
     while (datoBaja != NULL) {
+      //Se muestran los pacientes de baja prioridad
       printf("Nombre: %s - Prioridad: %s\n", datoBaja->nombre, datoBaja->prioridad);
       printf("Fue ingresado a las %s\n", datoBaja->hora);
       printf("-------------------------------\n");
@@ -168,10 +177,12 @@ void mostrar_lista_pacientes(List *pacientes, List *pacientesMedio, List *pacien
     }
   }
 }
+//Funcion para atender al siguiente paciente
 void atender_paciente(List *pacientesBajo, List *pacientesMedio,
                       List *pacienteAlto) {
   limpiarPantalla();
   printf("-------------------------------\n");
+  //Se busca el paciente con la prioridad mas alta y se muestran sus datos
   paciente *pacienteAlta = list_first(pacienteAlto);
   if (pacienteAlta == NULL) {
     paciente *pacienteMedio = list_first(pacientesMedio);
@@ -205,6 +216,7 @@ void atender_paciente(List *pacientesBajo, List *pacientesMedio,
   }
   printf("-------------------------------\n");
 }
+//Funcion para mostrar listas en comun
 void mostrar_lista(List *lista) {
   paciente *dato = list_first(lista);
   printf("-------------------------------\n");
@@ -212,6 +224,7 @@ void mostrar_lista(List *lista) {
     printf("No hay pacientes registrados\n");
   else {
     while (dato != NULL) {
+      //Se muestran los datos de las personas
       printf("Nombre:");
       printf("%s - Prioridad: %s\n", dato->nombre, dato->prioridad);
       printf("Fue ingresado a las %s\n", dato->hora);
@@ -220,9 +233,12 @@ void mostrar_lista(List *lista) {
   }
   printf("-------------------------------\n");
 }
+
+// Funcio para mostrar pacientes por prioridad
 void mostrarPrioridad(List *pacientes, List *pacientesMedio,
                       List *pacientesAlto) {
   char eleccion;
+  //Se selecciona la prioridad que se desea ver
   printf("-------------------------------\n");
   printf("Seleccione que prioridad desea ver:\n");
   printf("1) Alta\n");
@@ -232,6 +248,7 @@ void mostrarPrioridad(List *pacientes, List *pacientesMedio,
   scanf(" %c", &eleccion);
   limpiarPantalla();
   switch (eleccion) {
+    //Se muestra la lista seleccionada
   case '1':
     mostrar_lista(pacientesAlto);
     break;
