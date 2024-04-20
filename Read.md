@@ -39,6 +39,11 @@ Dado que el sistema está diseñado para ser accesible y fácil de probar, recom
 - Modificar la interfaz para que sea más amigable
 - Permitir la modificación de datos del paciente
 
+### Posibles errores:
+
+- Al momento de registrar a un paciente si se ingresa letras en la edad se la salta
+- No se puede reasignar 2 veces la prioridad de los pacientes
+  
 ## Ejemplo de uso
 
 **Paso 1: Registrar un Nuevo Paciente**

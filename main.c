@@ -48,13 +48,13 @@ void registrar_paciente(List *pacientes) {
 
   fecha_hora = localtime(&segundos);
 
-  int hora = fecha_hora->tm_hour - 4;
+  int hora = fecha_hora->tm_hour - 4; //Tranforma la hora a hora actual
   int minutos = fecha_hora->tm_min;
   int segundos_actual = fecha_hora->tm_sec;
 
   char hora_str[9];
 
-  sprintf(hora_str, "%02d:%02d:%02d", hora, minutos, segundos_actual);
+  sprintf(hora_str, "%02d:%02d:%02d", hora, minutos, segundos_actual); //Cambia el formato a la hora actual
   strcpy(paciente_actual->hora, hora_str);
 
   printf("Registrar nuevo paciente\n");
@@ -114,6 +114,7 @@ void reasignar(paciente *paciente) {
   default:
     puts("Opción no válida. Por favor, intente de nuevo.");
     printf("-------------------------------\n");
+    break;
   }
 }
 
@@ -196,7 +197,7 @@ void atender_paciente(List *pacientesBajo, List *pacientesMedio,
         printf("Sintoma: %s\n", pacienteBajo->sintoma);
         printf("Prioridad: %s\n", pacienteBajo->prioridad);
         printf("Fue ingresado a las %s\n", pacienteBajo->hora);
-        list_popFront(pacientesBajo);
+        list_popFront(pacientesBajo); //Se elimina el paciente de la lista
       }
     } else {
       printf("El siguiente paciente es: %s\n", pacienteMedio->nombre);
@@ -204,7 +205,7 @@ void atender_paciente(List *pacientesBajo, List *pacientesMedio,
       printf("Sintoma: %s\n", pacienteMedio->sintoma);
       printf("Prioridad: %s\n", pacienteMedio->prioridad);
       printf("Fue ingresado a las %s\n", pacienteMedio->hora);
-      list_popFront(pacientesMedio);
+      list_popFront(pacientesMedio); //Se elimina el paciente de la lista
     }
   } else {
     printf("El siguiente paciente es: %s\n", pacienteAlta->nombre);
@@ -212,7 +213,7 @@ void atender_paciente(List *pacientesBajo, List *pacientesMedio,
     printf("Sintoma: %s\n", pacienteAlta->sintoma);
     printf("Prioridad: %s\n", pacienteAlta->prioridad);
     printf("Fue ingresado a las %s\n", pacienteAlta->hora);
-    list_popFront(pacienteAlto);
+    list_popFront(pacienteAlto); //Se elimina el paciente de la lista
   }
   printf("-------------------------------\n");
 }
@@ -234,7 +235,7 @@ void mostrar_lista(List *lista) {
   printf("-------------------------------\n");
 }
 
-// Funcio para mostrar pacientes por prioridad
+// Funcion para mostrar pacientes por prioridad
 void mostrarPrioridad(List *pacientes, List *pacientesMedio,
                       List *pacientesAlto) {
   char eleccion;
@@ -266,7 +267,7 @@ void mostrarPrioridad(List *pacientes, List *pacientesMedio,
 
 int main() {
   char opcion;
-  List *pacientes = list_create();
+  List *pacientes = list_create(); //Lista auxiliar
   List *pacientesBaja = list_create();
   List *pacientesMedio = list_create();
   List *pacientesAlto = list_create();
@@ -307,6 +308,9 @@ int main() {
 
   // Liberar recursos, si es necesario
   list_clean(pacientes);
+  list_clean(pacientesBaja);
+  list_clean(pacientesMedio);
+  list_clean(pacientesAlto);
 
   return 0;
 }
