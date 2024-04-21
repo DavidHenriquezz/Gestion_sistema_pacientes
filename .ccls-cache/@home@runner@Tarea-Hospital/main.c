@@ -5,11 +5,11 @@
 #include <time.h>
 
 typedef struct paciente {
-  char nombre[101];
-  int edad;
-  char sintoma[101];
-  char prioridad[101];
-  char hora[9];
+  char nombre[101]; //Nombre del paciente
+  int edad; // Edad del paciente
+  char sintoma[101]; // Sintoma del paciente
+  char prioridad[101]; // Prioridad asignada
+  char hora[9]; // Hora de ingreso
 } paciente;
 
 // Función para limpiar la pantalla
