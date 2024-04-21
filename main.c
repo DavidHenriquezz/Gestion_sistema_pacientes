@@ -280,9 +280,6 @@ void mostrarPrioridad(List *pacientes, List *pacientesMedio,
     printf("Opción inválida\n");// Mensaje por si no se ingresa una opción valida
   }
 }
-    break;
-  }
-}
 
 int main() {
   char opcion;
