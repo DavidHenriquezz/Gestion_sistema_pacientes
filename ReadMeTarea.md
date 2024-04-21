@@ -39,6 +39,7 @@ Dado que el sistema está diseñado para ser accesible y fácil de probar, recom
 
 - Al momento de registrar a un paciente si se ingresa letras en la edad se la salta
 - No se puede reasignar 2 veces la prioridad de los pacientes
+- Al momento de asignar prioridades si se ingresa una letra distinta a "s o n" la prioridad no será cambiada.
   
 ## Ejemplo de uso
 
