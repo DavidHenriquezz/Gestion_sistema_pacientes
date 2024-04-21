@@ -14,7 +14,7 @@ Dado que el sistema está diseñado para ser accesible y fácil de probar, recom
 
 3.- Una vez en el inicio selecciona  "New Repl" y elige "Import from GitHub".
 
-4.- Pegar este link = [https://github.com/DavidHenriquezz/Gestion_sistema_pacientes](https://github.com/DavidHenriquezz/Gestion_sistema_pacientes)
+4.- Pegar este link = https://github.com/DavidHenriquezz/Gestion_sistema_pacientes
 
 5.- Repl.it clonara el repositorio y te preparará un entorno de ejecución
 
